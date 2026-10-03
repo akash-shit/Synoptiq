@@ -51,9 +51,9 @@ function WindyPanel({ region, variable, onVariable, coordinates, regions, onRegi
   const selection = WINDY_OVERLAYS[variable];
   const source = `https://embed.windy.com/embed2.html?lat=${coordinates.lat}&lon=${coordinates.lon}&detailLat=${coordinates.lat}&detailLon=${coordinates.lon}&zoom=5&level=surface&overlay=${selection.overlay}&product=ecmwf&menu=false&message=false&marker=true&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=km%2Fh&metricTemp=%C2%B0C`;
   return (
-    <section className="windy-panel" aria-label="Live Windy weather map">
+    <section className="windy-panel" aria-label="Live weather map">
       <div className="windy-head">
-        <div><span className="kicker">LIVE WEATHER MAP · WINDY</span><h3>What is moving over this AOI?</h3></div>
+        <div><span className="kicker">LIVE WEATHER MAP</span><h3>What is moving over this AOI?</h3></div>
         <span className="windy-location">{region} · real provider view</span>
       </div>
       <div className="windy-controls" role="group" aria-label="Windy weather layer">
@@ -62,12 +62,15 @@ function WindyPanel({ region, variable, onVariable, coordinates, regions, onRegi
           return <button key={key} type="button" className={key === variable ? "active" : ""} aria-pressed={key === variable} onClick={() => onVariable(key)}><Icon />{item.label}</button>;
         })}
       </div>
-      <iframe key={`${region}-${variable}`} title={`Windy ${selection.label} map`} src={source} loading="lazy" className="windy-frame" allow="fullscreen" />
+      <div className="windy-frame-wrap">
+        <iframe key={`${region}-${variable}`} title={`Live ${selection.label} weather map`} src={source} loading="lazy" className="windy-frame" allow="fullscreen" />
+        <span className="windy-live-mask" aria-hidden="true"><i />LIVE WEATHER</span>
+      </div>
       <div className="aoi-strip" role="group" aria-label="Synoptiq areas of interest">
         <span className="aoi-label">AOI SPOTS</span>
         {regions.map((item) => <button key={item.code} type="button" className={item.code === region ? "active" : ""} onClick={() => onRegion(item.code)}><i />{item.code}<small>{item.name}</small></button>)}
       </div>
-      <p className="windy-note">Live visualization by Windy.com. The forecast card above remains the validated Synoptiq decision for this zone and lead time.</p>
+      <p className="windy-note">Live visualization. The forecast card above remains the validated Synoptiq decision for this zone and lead time.</p>
     </section>
   );
 }
