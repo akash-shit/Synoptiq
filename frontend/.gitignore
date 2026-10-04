@@ -38,3 +38,4 @@ dist-ssr
 **/_netrc
 **/.netrc
 **/.cdsapirc
+.vercel
