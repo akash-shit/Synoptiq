@@ -11,8 +11,8 @@ COPY backend ./backend
 COPY training ./training
 COPY scripts ./scripts
 COPY ops ./ops
-COPY data/real/training.sqlite3 ./data/real/training.sqlite3
-COPY data/fake/demo/synoptiq.db ./data/fake/demo/synoptiq.db
+# COPY data/real/training.sqlite3 ./data/real/training.sqlite3
+# COPY data/fake/demo/synoptiq.db ./data/fake/demo/synoptiq.db
 COPY models ./models
 COPY artifacts ./artifacts
 ENV SYNOPTIQ_MODE=real
