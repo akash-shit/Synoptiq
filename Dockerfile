@@ -12,12 +12,10 @@ COPY training ./training
 COPY scripts ./scripts
 COPY ops ./ops
 # COPY data/real/training.sqlite3 ./data/real/training.sqlite3
-# COPY data/fake/demo/synoptiq.db ./data/fake/demo/synoptiq.db
+COPY data/fake/demo/synoptiq.db ./data/fake/demo/synoptiq.db
 COPY models ./models
 COPY artifacts ./artifacts
-ENV SYNOPTIQ_MODE=real
-# keep pulling real provider cycles for the life of the container, with no
-# manual step — the API process runs the scheduler
-ENV SYNOPTIQ_AUTO_REFRESH=1
+ENV SYNOPTIQ_MODE=fake
+ENV SYNOPTIQ_AUTO_REFRESH=0
 ENV SYNOPTIQ_LIVE_REFRESH_MINUTES=15
 CMD ["uvicorn", "app.main:app", "--app-dir", "backend", "--host", "0.0.0.0", "--port", "8000"]
