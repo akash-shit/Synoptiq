@@ -20,6 +20,15 @@ __pycache__/
 .pytest_cache/
 node_modules/
 frontend/dist/
-/data
+/data/*
+!/data/real/
+/data/real/*
+!/data/real/training.sqlite3
+!/data/fake/
+/data/fake/*
+!/data/fake/demo/
+/data/fake/demo/*
+!/data/fake/demo/synoptiq.db
+
 /.venv
 /archive
